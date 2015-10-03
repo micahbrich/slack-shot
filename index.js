@@ -45,6 +45,7 @@ function handlePayload(body){
   }, function (error, response, body) {
     if (!error && response.statusCode == 200) {
 
+        console.log("access_key=" + process.env.SCREENSHOTLAYER_TOKEN);
         console.log(response);
         console.log(body);
 
