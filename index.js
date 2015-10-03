@@ -40,7 +40,7 @@ function handlePayload(body){
   request.get('http://api.screenshotlayer.com/api/capture', {
     access_key: process.env.SCREENSHOTLAYER_TOKEN,
     url: url,
-    viewport: 1440x900,
+    viewport: "1440x900",
     width: 900
   }, function (error, response, body) {
     if (!error && response.statusCode == 200) {
