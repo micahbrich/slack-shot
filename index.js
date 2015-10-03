@@ -50,7 +50,7 @@ function handlePayload(body){
     username: config.username,
     icon_emoji: config.emoji,
     channel: body.channel_id,
-    // unfurl_links: true,
+    unfurl_links: true,
     attachments: [
       {
         fallback: '*<' + url + '|' + text[0] + '>* • <' + screenshot + '|Screenshot>',
@@ -59,7 +59,6 @@ function handlePayload(body){
           {
             title: "Screenshot",
             value: screenshot,
-            unfurl_links: true,
             short: false
           }
         ]
