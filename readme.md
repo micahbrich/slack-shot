@@ -1,8 +1,14 @@
-# slack-shot [![Dependency Status](http://img.shields.io/gemnasium/micahbrich/slack-shot.svg?style=flat-square)](https://gemnasium.com/micahbrich/slack-shot)
-> a tool to quickly nab a screenshot of a website
+# slack-shot
 
 
-![.slugify(moduleName) screenshot example](screenshot.png)
+`/slack-shot` is a simple tool to quickly nab a screenshot of a website. We wanted to capture fonts-in-use for [The League](https://www.theleagueofmoveabletype.com/), and needed a way to standardize our shots.
+
+This way, anyone on the team can hop on slack after they found a random site using a League font, and just type: `/slackshot browserling.com uses Raleway`, and we'll get back:
+
+- - -
+![screen shot example](https://cloud.githubusercontent.com/assets/25366/10265384/ffa1e7de-69fb-11e5-89f3-50eaaa91efe4.png)
+- - -
+It's built very simply on node.js, utilizing the [https://screenshotlayer.com](screenshotlayer API). We tried to use phantomJS at first, but it couldn't handle webfonts, which  defeated the entire purpose.
 
 
 ## Running locally
@@ -33,8 +39,7 @@ See the [Heroku documentation](https://devcenter.heroku.com/articles/config-vars
 1. Create a Slack [incoming WebHook][slack-webhook] integration *(settings aren't important, note the WebHook URL)*
 2. Deploy your copy of `slack-shot`, and note your URL endpoint
 3. Create a Slack [slash command][slack-command] integration with default settings and use the URL endpoint from above *(optionally note the token for extra security)*
-4. *Optional: Add autocomplete help text to Slack command:*
-  ![slack command autocomplete help](slack-autocomplete.png)
+4. *Optional: Add autocomplete help text to Slack command*
 
 
 ## Settings
@@ -44,12 +49,7 @@ The following environment variables needs to be set for the command to work, if 
 - `USERNAME` - *Username to use when replying with the conversion result (default: slackshot)*
 - `EMOJI` - *Emoji icon to use when replying with the conversion result (default: :round_pushpin:)*
 - `SLACK_TOKEN` - *Additional security step: Slack [slash command][slack-command] token for verification that the request came from your Slack team (not required)*
-
-
-## Related
-- [`generator-slack-command`](https://github.com/matiassingers/generator-slack-command)
-- [`slack-movie`](https://github.com/matiassingers/slack-movie)
-- [`slack-currency`](https://github.com/matiassingers/slack-currency)
+- `SCREENSHOTLAYER_TOKEN` - *The token the Screenshotlayer API gives you*
 
 
 ## License
