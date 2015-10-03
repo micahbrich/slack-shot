@@ -38,7 +38,7 @@ function handlePayload(body){
   var url = prependHttp(text[0])
 
   var query = {
-    access_key: "process.env.SCREENSHOTLAYER_TOKEN",
+    access_key: process.env.SCREENSHOTLAYER_TOKEN,
     url: url,
     viewport: "1440x900",
     width: 900
