@@ -37,12 +37,14 @@ function handlePayload(body){
   var text = body.text.split(' ');
   var url = prependHttp(text[0]);
 
-  request.get('http://api.screenshotlayer.com/api/capture', {
+  var query = {
     access_key: process.env.SCREENSHOTLAYER_TOKEN,
     url: url,
     viewport: "1440x900",
     width: 900
-  }, function (error, response, body) {
+  }
+
+  request.get({url:'http://api.screenshotlayer.com/api/capture', qs:query}, function (error, response, body) {
     if (!error && response.statusCode == 200) {
 
         console.log("access_key=" + process.env.SCREENSHOTLAYER_TOKEN);
