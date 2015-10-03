@@ -35,7 +35,8 @@ function handlePayload(body){
   }
 
   var text = body.text.split(' ');
-  var url = prependHttp(text[0])
+  var site = text.shift();
+  var url = prependHttp(site);
 
   var query = {
     access_key: process.env.SCREENSHOTLAYER_TOKEN,
@@ -50,7 +51,7 @@ function handlePayload(body){
     username: config.username,
     icon_emoji: config.emoji,
     channel: body.channel_id,
-    text: '*<' + url + '|' + text[0] + '>*',
+    text: '*<' + url + '|' + site + '>* ' + text.join(" "),
     unfurl_links: true,
     attachments: [
       {
