@@ -50,8 +50,21 @@ function handlePayload(body){
     username: config.username,
     icon_emoji: config.emoji,
     channel: body.channel_id,
-    text: '*<' + url + '|' + text[0] + '>* • <' + screenshot + '|Screenshot>',
-    unfurl_links: true
+    // unfurl_links: true,
+    attachments: [
+      {
+        fallback: '*<' + url + '|' + text[0] + '>* • <' + screenshot + '|Screenshot>',
+        pretext: '*<' + url + '|' + text[0] + '>* • Grabbing screenshot...',
+        fields: [
+          {
+            title: "Screenshot",
+            value: screenshot,
+            unfurl_links: true,
+            short: false
+          }
+        ]
+      }
+    ]
   });
 
   // request.get({url:'http://api.screenshotlayer.com/api/capture', qs:query}, function (error, response, body) {
