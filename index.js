@@ -50,7 +50,7 @@ function handlePayload(body){
     username: config.username,
     icon_emoji: config.emoji,
     channel: body.channel_id,
-    text: '<' + screenshot + '|' + url + '>',
+    text: '*<' + url + '|' + text[0] + '>* • <' + screenshot + '|Screenshot>',
     unfurl_links: true
   });
 
