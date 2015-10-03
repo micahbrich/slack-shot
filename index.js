@@ -35,39 +35,33 @@ function handlePayload(body){
   }
 
   var text = body.text.split(' ');
-  var url = prependHttp(text[0]);
+  var url = prependHttp(text[0])
 
   var query = {
-    access_key: process.env.SCREENSHOTLAYER_TOKEN,
+    access_key: "process.env.SCREENSHOTLAYER_TOKEN",
     url: url,
     viewport: "1440x900",
     width: 900
   }
 
-  request.get({url:'http://api.screenshotlayer.com/api/capture', qs:query}, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
+  var screenshot = "http://api.screenshotlayer.com/api/capture" + "?" + querystring.stringify(query);
 
-        console.log("access_key=" + process.env.SCREENSHOTLAYER_TOKEN);
-        console.log(body);
-
-        slack.send({
-          username: config.username,
-          icon_emoji: config.emoji,
-          channel: body.channel_id,
-          text: '<' + url + '>',
-          unfurl_links: true,
-          attachments: [{
-            title: 'result here',
-            fields:[
-              {
-                 "title":"Screenshot",
-                 "value":"<" + "awesome" + ">",
-                 "short":false
-              }
-            ]
-          }]
-        });
-
-    }
+  slack.send({
+    username: config.username,
+    icon_emoji: config.emoji,
+    channel: body.channel_id,
+    text: '<' + screenshot + '>',
+    unfurl_links: true
   });
+
+  // request.get({url:'http://api.screenshotlayer.com/api/capture', qs:query}, function (error, response, body) {
+  //   if (!error && response.statusCode == 200) {
+
+  //       console.log("access_key=" + process.env.SCREENSHOTLAYER_TOKEN);
+  //       console.log(body);
+
+
+
+  //   }
+  // });
 }
