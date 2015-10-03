@@ -25,7 +25,6 @@
   "dependencies": {
     "prepend-http": "^1.0.3",
     "querystring": "0.2.0",
-    "request": "^2.64.0",
     "slack-notify": "0.1.4"
   }
 }

@@ -3,7 +3,6 @@
 var http = require('http');
 var querystring = require('querystring');
 var slack = require('slack-notify')(process.env.SLACK_HOOK_URL);
-var request = require('request');
 var prependHttp = require('prepend-http');
 
 var config =  {
@@ -61,15 +60,4 @@ function handlePayload(body){
       }
     ]
   });
-
-  // request.get({url:'http://api.screenshotlayer.com/api/capture', qs:query}, function (error, response, body) {
-  //   if (!error && response.statusCode == 200) {
-
-  //       console.log("access_key=" + process.env.SCREENSHOTLAYER_TOKEN);
-  //       console.log(body);
-
-
-
-  //   }
-  // });
 }
