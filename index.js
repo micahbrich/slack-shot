@@ -50,18 +50,13 @@ function handlePayload(body){
     username: config.username,
     icon_emoji: config.emoji,
     channel: body.channel_id,
+    text: '*<' + url + '|' + text[0] + '>*',
     unfurl_links: true,
     attachments: [
       {
-        fallback: '*<' + url + '|' + text[0] + '>* • <' + screenshot + '|Screenshot>',
-        pretext: '*<' + url + '|' + text[0] + '>* • Grabbing screenshot...',
-        fields: [
-          {
-            title: "Screenshot",
-            value: screenshot,
-            short: false
-          }
-        ]
+        title: "Screenshot",
+        title_link: screenshot,
+        image_url: screenshot
       }
     ]
   });
