@@ -3,6 +3,8 @@
 var http = require('http');
 var querystring = require('querystring');
 var slack = require('slack-notify')(process.env.SLACK_HOOK_URL);
+var request = require('request');
+var prependHttp = require('prepend-http');
 
 var config =  {
   username: process.env.USERNAME || 'slackshot',
@@ -33,14 +35,37 @@ function handlePayload(body){
   }
 
   var text = body.text.split(' ');
+  var url = prependHttp(text[0]);
 
-  slack.send({
-    username: config.username,
-    icon_emoji: config.emoji,
-    channel: body.channel_id,
-    text: '_' + body.command + ' ' + body.text + '_',
-    attachments: [{
-      title: 'result here'
-    }]
+  request.get('http://api.screenshotlayer.com/api/capture', {
+    access_key: process.env.SCREENSHOTLAYER_TOKEN,
+    url: url,
+    viewport: 1440x900,
+    width: 900
+  }, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+
+        console.log(response);
+        console.log(body);
+
+        slack.send({
+          username: config.username,
+          icon_emoji: config.emoji,
+          channel: body.channel_id,
+          text: '<' + url + '>',
+          unfurl_links: true,
+          attachments: [{
+            title: 'result here',
+            fields:[
+              {
+                 "title":"Screenshot",
+                 "value":"<" + "awesome" + ">",
+                 "short":false
+              }
+            ]
+          }]
+        });
+
+    }
   });
 }
