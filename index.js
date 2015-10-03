@@ -51,7 +51,8 @@ function handlePayload(body){
     icon_emoji: config.emoji,
     channel: body.channel_id,
     text: '*<' + url + '|' + site + '>* ' + text.join(" "),
-    unfurl_links: true,
+    unfurl_links: false,
+    unfurl_media: false,
     attachments: [
       {
         title: "Screenshot",
