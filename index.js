@@ -42,7 +42,7 @@ function handlePayload(body){
     url: url,
     viewport: "1440x900",
     width: 900,
-    delay: 0.5
+    delay: 1
   }
 
   var screenshot = "http://api.screenshotlayer.com/api/capture" + "?" + querystring.stringify(query);
