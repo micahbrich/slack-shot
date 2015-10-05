@@ -34,15 +34,14 @@ function handlePayload(body){
   }
 
   var text = body.text.split(' ');
-  var site = text.shift();
+  var site = text.shift().replace(/ /g,'');
   var url = prependHttp(site);
 
   var query = {
     access_key: process.env.SCREENSHOTLAYER_TOKEN,
     url: url,
     viewport: "1440x900",
-    width: 900,
-    delay: 1
+    width: 900
   }
 
   var screenshot = "http://api.screenshotlayer.com/api/capture" + "?" + querystring.stringify(query);
