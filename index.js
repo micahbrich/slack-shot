@@ -41,7 +41,8 @@ function handlePayload(body){
     access_key: process.env.SCREENSHOTLAYER_TOKEN,
     url: url,
     viewport: "1440x900",
-    width: 900
+    width: 900,
+    delay: 3
   }
 
   var screenshot = "http://api.screenshotlayer.com/api/capture" + "?" + querystring.stringify(query);
