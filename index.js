@@ -22,7 +22,7 @@ http.createServer(function (req, res) {
     res.end();
 
     body = querystring.parse(body);
-    console.log(body);
+    console.log(body)
 
     handlePayload(body);
   });
